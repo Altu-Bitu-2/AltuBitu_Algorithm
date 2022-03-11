@@ -1,3 +1,0 @@
-C:/CLionProjects/0304-sort/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/CLionProjects/0304-sort/cmake-build-debug/CMakeFiles/0304.dir
-C:/CLionProjects/0304-sort/cmake-build-debug/CMakeFiles/rebuild_cache.dir
