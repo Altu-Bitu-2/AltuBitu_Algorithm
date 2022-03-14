@@ -15,9 +15,10 @@ int main(){
     while(T--){
         int result=1;
         map <string,int>m;
-        set<string> s;
+        //set<string> s;
         cin >>n;
         for(int i=0;i<n;i++){
+           /* 이전코드
             cin >>c;
             cin >>t;
             if(s.find(t) !=s.end()){
@@ -26,7 +27,9 @@ int main(){
             else{
                 s.insert(t);
                 m[t]++;
-            }
+            }*/
+            cin >>c >>t;
+            m[t]++;
         }
 
         for(auto iter=m.begin();iter!=m.end();iter++){

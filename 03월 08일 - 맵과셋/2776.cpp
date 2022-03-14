@@ -1,24 +1,7 @@
 #include <iostream>
 #include <set>
-#include <vector>
 
 using namespace std;
-
-int compareNum(int n, vector<int> &note2,set<int> &note1){
-    for(int i=0; i<n ;i++){
-        for(auto iter=note1.begin();iter!=note1.end();iter++){
-            if(*iter == note2[i]){
-                cout << "1"<<"\n";
-                break;
-            }
-            if(*iter == *note1.end()){
-                cout <<"0"<<"\n";
-            }
-        }
-    }
-
-}
-
 
 int main (){
 
@@ -29,24 +12,28 @@ int main (){
     int T;
     cin >> T;
 
-
     while(T--){
 
-        int N,M,input;
-        set <int> note1;
+        int N,M,input1,input2;
+        set <int> note;
 
         cin >> N;
         for(int i=0;i<N;i++){
-            cin >> input;
-            note1.insert(input);
+            cin >> input1;
+            note.insert(input1);
         }
 
         cin >> M;
-        vector <int> note2(M);
+
         for(int i=0;i<M;i++){
-            cin >> note2[i];
+            cin >> input2;
+            if(note.find(input2)!=note.end()){
+                cout << "1"<<"\n";
+            }
+            else{
+                cout << "0"<<"\n";
+            }
         }
-        compareNum(M,note2,note1);
 
     }
 

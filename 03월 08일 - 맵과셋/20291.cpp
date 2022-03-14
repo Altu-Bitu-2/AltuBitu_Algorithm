@@ -12,9 +12,13 @@ int main() {
 
     while(N--){
         cin >> s;
+       /* 이전코드
         int p;
         p=s.find(".");
-        s.erase(0,p+1);
+        s.erase(0,p+1);*/
+
+       s=s.substr(s.find('.'+1));
+
         file[s]++;
 
     }
