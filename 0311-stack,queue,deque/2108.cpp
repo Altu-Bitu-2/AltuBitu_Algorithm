@@ -1,12 +1,25 @@
 #include <iostream>
 #include <vector>
 #include <set>
-#include <map>
 #include <cmath>
+#include <map>
+#include <algorithm>
 using namespace std;
 
+bool cmp(const pair<int, int> &a, const pair<int, int> &b)
+{
+    if(a.second!=b.second){
+        return a.second > b.second;
+    }
+    else{
+        return a.first>b.first;
+    }
+
+}
+
+
 //산술평균
-void calcMean(vector<int> v){
+int calcMean(vector<int> v){
     double sum=0;
 
     for(int i=0;i<v.size();i++){
@@ -15,76 +28,53 @@ void calcMean(vector<int> v){
     double mean =sum/v.size();
 
     if(round(mean)==-0){
-        cout <<-round(mean)<<"\n";
+        return -round(mean);
     }
     else{
-        cout <<round(mean)<<"\n";
+        return round(mean);
     }
 
 }
 
 //중앙값
-void calcMedian(vector<int> v){
-    multiset<int> ms;
-    for(int i=0;i<v.size();i++){
-        ms.insert(v[i]);
-    }
-
-    while(ms.size()!=1){
-        ms.erase(--ms.end());
-        ms.erase(ms.begin()--);
-    }
-
-    cout << * ms.begin()<<"\n";
-
+int calcMedian(vector<int> v){
+    sort(v.begin(),v.end());
+    return v[v.size()/2];
 }
 
 //최빈값
-void calcMode(vector<int> v){
+int calcMode(vector<int> v){
     map<int,int> m;
-    set<int>s,tmp;
-    int max=1;
-    int maxKey;
+    set<int>s;
+    int maxTimes=0;
 
     for(int i= 0; i<v.size();i++){
         int n = v[i];
         m[n]++;
     }
-    for(auto iter =m.begin();iter !=m.end();iter++){
-        if(max <= iter->second){
-            max = iter->second;
-            maxKey = iter->first;
+    vector<pair<int,int>> k {m.begin(),m.end()};
+    sort(k.begin(),k.end(),cmp);
+    for(int i=1;i<k.size();i++){
+        if(k[0].second == k[i].second){
+            maxTimes++;
         }
     }
-    for(auto iter =m.begin();iter !=m.end();iter++){
-         tmp.insert(iter->second);
-    }
-    if(tmp.size()==1 && m.size() != 1){
-        for(int i=0;i<v.size();i++){
-            s.insert(v[i]);
-        }
-        s.erase(s.begin());
-        cout<< * s.begin()<<"\n";
-
+    if(maxTimes==0){
+        return k[0].first;
     }
     else{
-        cout << maxKey<<"\n";
+        return k[maxTimes-1].first;
     }
-
 
 }
 
 //범위
-void calcRange(vector<int> v){
-    set<int> s;
-    for(int i=0;i<v.size();i++){
-        s.insert(v[i]);
-    }
-    auto max = s.rbegin();
-    auto min =s.begin();
-    int range =(*max)-(*min);
-
-    cout<<range<<"\n";
+int calcRange(vector<int> v){
+    sort(v.begin(),v.end());
+    int min=v[0];
+    int max=v[v.size()-1];
+    int range =max-min;
+    return range;
 }
 
 int main(){
@@ -98,10 +88,10 @@ int main(){
 
     }
 
-    calcMean(v);
-    calcMedian(v);
-    calcMode(v);
-    calcRange(v);
+    cout << calcMean(v)<<"\n";
+    cout << calcMedian(v)<<"\n";
+    cout << calcMode(v)<<"\n";
+    cout << calcRange(v);
 
 
     return 0;
