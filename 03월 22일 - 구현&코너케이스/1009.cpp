@@ -15,7 +15,7 @@ int main() {
             b=4;
         }
         if(a==0){
-            cout <<10;
+            cout <<10<<"\n";
         }
         else{
             int tmp = pow(a,b);
