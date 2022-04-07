@@ -3,7 +3,7 @@
 
 using namespace std;
 
-deque<char> password(string l){
+string password(string l){
     deque <char> left;
     deque <char> right;
     for(int i=0;i<l.length();i++){
@@ -31,11 +31,17 @@ deque<char> password(string l){
                 left.push_back(l[i]);
         }
     }
+  string result;
+    while(!left.empty()){
+        result.push_back(left.front());
+        left.pop_front();
+    }
     while(!right.empty()){
-        left.push_back(right.front());
+        result.push_back((right.front()));
+        right.pop_front();
     }
 
-    return left;
+    return result;
 
 }
 
@@ -46,13 +52,8 @@ int main(){
     while(t--){
         string l;
         cin >>l;
-        deque<char> result =password(l);
 
-while(!result.empty()){
-    cout <<result.front();
-    result.pop_front();
-}
-        cout<<"\n";
+        cout<<password(l)<<"\n";
 
 
     }

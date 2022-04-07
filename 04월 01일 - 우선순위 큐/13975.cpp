@@ -4,7 +4,7 @@
 using namespace std;
 
 
-long long minCost(priority_queue<int,vector<int>, greater<int>> &q){
+long long minCost(priority_queue<long long,vector<long long>, greater<long long>> &q){
     long long result =0;
     while(true){
         long long sum=0;
@@ -26,7 +26,7 @@ int main(){
     int t,k;
     cin >> t;
     while(t--){
-        priority_queue<int,vector<int>, greater<int>> q;
+        priority_queue<long long,vector<long long>, greater<long long>> q;
         cin >>k;
         while(k--){
             int tmp;
