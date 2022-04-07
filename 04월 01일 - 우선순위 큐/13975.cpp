@@ -4,10 +4,10 @@
 using namespace std;
 
 
-int minCost(priority_queue<int,vector<int>, greater<int>> &q){
-    int result =0;
+long long minCost(priority_queue<int,vector<int>, greater<int>> &q){
+    long long result =0;
     while(true){
-        int sum=0;
+        long long sum=0;
         sum+=q.top();
         q.pop();
         sum+=q.top();
@@ -24,9 +24,9 @@ int minCost(priority_queue<int,vector<int>, greater<int>> &q){
 
 int main(){
     int t,k;
-    priority_queue<int,vector<int>, greater<int>> q;
     cin >> t;
     while(t--){
+        priority_queue<int,vector<int>, greater<int>> q;
         cin >>k;
         while(k--){
             int tmp;

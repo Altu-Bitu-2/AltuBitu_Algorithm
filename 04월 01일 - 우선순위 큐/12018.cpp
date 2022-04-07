@@ -5,12 +5,6 @@
 using namespace std;
 
 
-struct cmp {
-    bool operator()(const int &x1, const int &x2) {
-        return x2 < x1;
-    }
-};
-
 int requiredMileage(int p,int l,vector<int> &q){
     sort(q.begin(),q.end());
   if(p<l){
@@ -25,7 +19,7 @@ int main(){
     int n,m,p,l;
     int result=0;
     int sum=0;
-    priority_queue<int,vector<int>, cmp> q;
+    priority_queue<int,vector<int>, greater<int>> q;
     cin >>n >>m;
 
     while(n--){
@@ -37,10 +31,12 @@ int main(){
         q.push(requiredMileage(p,l,mil));
     }
 
-    while(n--){
-        sum+=q.top();
-        result++;
-        q.pop();
+    while(!q.empty()){
+
+            sum+=q.top();
+            result++;
+            q.pop();
+
         if(sum>m){
             result--;
             break;

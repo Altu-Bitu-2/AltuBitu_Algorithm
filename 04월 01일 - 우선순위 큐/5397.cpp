@@ -1,37 +1,41 @@
 #include <iostream>
-#include <vector>
+#include <deque>
 
 using namespace std;
 
-vector<char> password(string l){
-    vector <char> str(l.size(),' ');
-    int cursor =0;
+deque<char> password(string l){
+    deque <char> left;
+    deque <char> right;
     for(int i=0;i<l.length();i++){
         switch(l[i]){
             case '<':
-                if(cursor>0){
-                    cursor--;
+                if(left.size()>0){
+                    int tmp =left.back();
+                    left.pop_back();
+                    right.push_front(tmp);
                 }
                 break;
             case '>':
-                if(cursor+1 < str.size()){
-                    cursor++;
+                if(right.size()>0){
+                    int tmp =right.front();
+                    right.pop_front();
+                    left.push_back(tmp);
                 }
                 break;
             case '-':
-                if(cursor>0){
-                    str.erase(str.begin()+cursor-1);
-                    cursor--;
+                if(left.size()>0){
+                    left.pop_back();
                 }
                 break;
             default:
-                str.insert(str.begin()+cursor,l[i]);
-                cursor++;
-
+                left.push_back(l[i]);
         }
     }
+    while(!right.empty()){
+        left.push_back(right.front());
+    }
 
-    return str;
+    return left;
 
 }
 
@@ -42,14 +46,12 @@ int main(){
     while(t--){
         string l;
         cin >>l;
-        vector<char> result =password(l);
+        deque<char> result =password(l);
 
-        for(int i=0;i<result.size();i++){
-            if(result[i] !=' '){
-                cout <<result[i];
-            }
-
-        }
+while(!result.empty()){
+    cout <<result.front();
+    result.pop_front();
+}
         cout<<"\n";
 
 
