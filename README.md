@@ -1,1 +1,1 @@
-"# AltuBitu_Algorithm" 
+# AltuBitu_Algorithm
