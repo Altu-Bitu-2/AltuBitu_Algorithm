@@ -6,22 +6,18 @@ long long minCost(vector<int> &roadL,vector<int> &oilP){
     long long result=0;
     int minP=oilP[0];
     for(int i=0;i<oilP.size()-1;i++){
-        if(oilP[i]<minP){
-            result+=roadL[i]*oilP[i];
-            minP=oilP[i];
-        }
-        else{
-            result+=roadL[i]*minP;
+        if(oilP[i]<minP) {
+            minP = oilP[i];
         }
 
+        result+=(long long)roadL[i]*minP;
     }
     return result;
-
 }
 
-
-
 int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     int n;
     cin >> n;
     vector<int> roadL(n-1,0);
